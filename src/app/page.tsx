@@ -1,7 +1,5 @@
-import { db, users } from "@/shared/lib/db";
 import { GithubUser } from "@/shared/lib/types";
 import { CiMail } from "react-icons/ci";
-import { sql } from "drizzle-orm";
 import Link from "next/link";
 import { FaGithub, FaTelegram, FaVk } from "react-icons/fa";
 
