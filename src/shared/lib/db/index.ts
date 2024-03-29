@@ -6,7 +6,7 @@ import { sql } from "drizzle-orm";
 
 const db = drizzle(vercelSql, { schema });
 await migrate(db, {
-  migrationsFolder: "./drizzle",
+  migrationsFolder: "drizzle",
 });
 
 const count = (await db.execute(sql`SELECT count(*) as count FROM bio;`))

@@ -32,9 +32,9 @@ export default function Blog() {
         <Input
           placeholder="Search..."
           className="mt-2"
-          onChange={(e) =>
-            setQuery((before) => ({ ...before, q: e.target.value }))
-          }
+          onChange={(e) => {
+            setQuery((before) => ({ ...before, q: e.target.value, page: 1 }))
+          }}
           value={query.q}
         />
         <Button
