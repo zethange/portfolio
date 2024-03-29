@@ -18,8 +18,8 @@ export default async function Home() {
   const data = (await db.select().from(bio))[0];
 
   return (
-    <main className="h-[100vh] w-[100vw] flex justify-center items-center">
-      <div className="md:px-60">
+    <main className="h-[100dvh] w-[100dvw] flex justify-center items-center">
+      <div className="md:px-60 max-md:px-2">
         <section className="grid gap-1">
           <h1 className="text-2xl">👋 hey! i'm {data.username}</h1>
           <p className="text-gray-600 font-mono">{data.bio}</p>
