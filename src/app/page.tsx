@@ -1,5 +1,9 @@
+import { db, users } from "@/shared/lib/db";
 import { GithubUser } from "@/shared/lib/types";
-import { Header } from "@/widgets/header";
+import { CiMail } from "react-icons/ci";
+import { sql } from "drizzle-orm";
+import Link from "next/link";
+import { FaGithub, FaTelegram, FaVk } from "react-icons/fa";
 
 const getGithubData = async () => {
   const res = await fetch(`https://api.github.com/users/zethange`);
@@ -8,19 +12,38 @@ const getGithubData = async () => {
 
 export default async function Home() {
   const data = await getGithubData();
+
   return (
-    <main className="container mx-auto">
-      <Header user={data} />
-      <div className="flex gap-4 items-center">
-        <img
-          src={data.avatar_url}
-          alt={data.login}
-          className="rounded-full h-48"
-        />
-        <div className="grid gap-1">
-          <h1 className="text-3xl">{data.login}</h1>
-          <p>{data.bio}</p>
-        </div>
+    <main className="h-[100vh] w-[100vw] flex justify-center items-center">
+      <div className="md:px-60">
+        <section className="grid gap-1">
+          <h1 className="text-2xl">👋 hey! i'm {data.login}</h1>
+          <p className="text-gray-600 font-mono">{data.bio}</p>
+          <Link href="/blog">blog {`->`}</Link>
+          <div className="flex gap-2">
+            <a
+              href={"mailto:zethange@yandex.ru"}
+              className="p-2 border rounded-md hover:bg-slate-50 transition-all cursor-pointer text-slate-500"
+            >
+              <CiMail />
+            </a>
+            <a
+              href={data.html_url}
+              className="p-2 border rounded-md hover:bg-slate-50 transition-all cursor-pointer text-slate-500"
+            >
+              <FaGithub />
+            </a>
+            <a
+              href={`https://${data.login}.t.me`}
+              className="p-2 border rounded-md hover:bg-slate-50 transition-all cursor-pointer text-slate-500"
+            >
+              <FaTelegram />
+            </a>
+            <a href={'https://vk.com/pomidorooo'} className="p-2 border rounded-md hover:bg-slate-50 transition-all cursor-pointer text-slate-500">
+              <FaVk />
+            </a>
+          </div>
+        </section>
       </div>
     </main>
   );
